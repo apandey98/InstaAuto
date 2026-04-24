@@ -9,5 +9,4 @@ Feature: To Apply jobs online from instahyre
     And go to total jobs feed
     Then user click on view button
     Then click on Apply
-    Then wait for 5 seconds
     Then click on apply again

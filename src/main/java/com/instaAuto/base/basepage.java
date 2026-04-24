@@ -18,7 +18,7 @@ public class basepage {
     }
 
     protected void type(By locator, String text) {
-        waitUtil.waitForVisibility(locator).sendKeys(text);
+        waitUtil.waitForVisibility(locator,10).sendKeys(text);
     }
 
     protected String getText(By locator) {

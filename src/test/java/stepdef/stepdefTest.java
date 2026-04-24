@@ -7,6 +7,8 @@
     import io.cucumber.java.en.*;
     import org.testng.Assert;
 
+    import static com.instaAuto.driver.driverFactory.driver;
+
     public class stepdefTest {
 
         private testContext context;
@@ -60,18 +62,13 @@
            login.clickViewButton();
         }
         @Then("click on Apply")
-        public void click_on_apply() {
+        public void click_on_apply() throws InterruptedException {
             login.clickApplyButton();
-        }
-
-        @Then("wait for {int} seconds")
-        public void wait_for_seconds(Integer seconds) throws InterruptedException {
-           ;
         }
 
         @Then("click on apply again")
         public void click_on_apply_again() {
-            // code
+           login.againClickOnApplyButton();
         }
 
     }
