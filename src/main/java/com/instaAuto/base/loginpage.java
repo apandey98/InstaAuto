@@ -12,16 +12,12 @@ public class loginpage extends basepage {
     public loginpage(WebDriver driver) {
               super(driver);
     }
-    private By login1=By.id("login");
-    //private By password=By.id("password");
     private By homeloginButton=By.id("nav-user-login");
     private By username = By.xpath("//input[@name='email']");
     private By password = By.id("password");
     private By login = By.xpath("//button[@type='submit']");
-    //private By getTitle=By.xpath("//a[@id='nav-candidates-opportunities']");
     private By searchOtherJobs=By.xpath("//h6[contains(text(),'Search')]");
     private By skill=By.id("skills-selectized");
-    //private By showResult=By.id("show-results");
     private By totalJobCount=By.xpath("//p[@class='ng-binding']/span");
     private By listofJobs=By.xpath("//div[@class='container']");
     private By viewButton=By.xpath("(//button[@id='interested-btn'])[1]");
@@ -92,23 +88,23 @@ public class loginpage extends basepage {
           Thread.sleep(5000);
     }
     public void againClickOnApplyButton(){
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
-            while (true) {
-                List<WebElement> buttons = driver.findElements(applyButton);
+        while (true) {
+            List<WebElement> buttons = driver.findElements(applyButton);
 
-                if (buttons.isEmpty()) {
-                    break;
-                }
-
-                try {
-                    WebElement btn = buttons.get(0);
-
-                    wait.until(ExpectedConditions.elementToBeClickable(btn)).click();
-
-                } catch (StaleElementReferenceException e) {
-                }
+            if (buttons.isEmpty()) {
+                break;
             }
+
+            try {
+                WebElement btn = buttons.get(0);
+
+                wait.until(ExpectedConditions.elementToBeClickable(btn)).click();
+
+            } catch (StaleElementReferenceException e) {
+            }
+        }
 
 
     }
