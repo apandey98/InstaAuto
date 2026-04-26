@@ -96,7 +96,7 @@ public class loginpage extends basepage {
                 List<WebElement> buttons = driver.findElements(applyButton);
 
                 if (buttons.isEmpty()) {
-                    break; // no more Apply buttons
+                    break;
                 }
 
                 try {
@@ -105,7 +105,6 @@ public class loginpage extends basepage {
                     wait.until(ExpectedConditions.elementToBeClickable(btn)).click();
 
                 } catch (StaleElementReferenceException e) {
-                    // DOM refreshed, retry
                 }
             }
 
