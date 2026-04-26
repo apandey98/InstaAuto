@@ -12,6 +12,8 @@ public class loginpage extends basepage {
     public loginpage(WebDriver driver) {
               super(driver);
     }
+    private By login1=By.id("login");
+    //private By password=By.id("password");
     private By homeloginButton=By.id("nav-user-login");
     private By username = By.xpath("//input[@name='email']");
     private By password = By.id("password");
