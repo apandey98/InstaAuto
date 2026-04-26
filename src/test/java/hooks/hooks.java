@@ -2,32 +2,26 @@ package hooks;
 
 import com.instaAuto.config.ConfigManager;
 import com.instaAuto.driver.driverFactory;
-import com.instaAuto.testcontext.testContext;
 import com.instaAuto.util.screenshotUtil;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
-import org.testng.ITestContext;
 
 public class hooks {
 
-    private testContext context;
-
-    public hooks(testContext context) {
-        this.context = context;
-    }
-
     @Before
-    public void setup() {
+    public void setup(Scenario scenario) {
 
-        // Initialize Driver
-        driverFactory.initDriver(ConfigManager.get("browser"));
+        String browser = ConfigManager.get("browser");
 
-        // Set Driver in Context
-        context.setDriver(driverFactory.getDriver());
+        if (scenario.getSourceTagNames().contains("@edge")) {
+            browser = "edge";
+        } else if (scenario.getSourceTagNames().contains("@firefox")) {
+            browser = "firefox";
+        }
 
-        // Launch Application
-        context.getDriver().get(ConfigManager.get("baseUrl"));
+        driverFactory.initDriver(browser);
+        driverFactory.getDriver().get(ConfigManager.get("baseUrl"));
     }
 
     @After
@@ -35,8 +29,7 @@ public class hooks {
 
         if (scenario.isFailed()) {
 
-            byte[] screenshot = screenshotUtil.takeScreenshot(context.getDriver());
-
+            byte[] screenshot = screenshotUtil.takeScreenshot(driverFactory.getDriver());
             scenario.attach(screenshot, "image/png", "Failure Screenshot");
         }
 
