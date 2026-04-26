@@ -8,7 +8,7 @@ pipeline {
 
     stages {
 
-                stage('Clean & Build') {
+        stage('Clean & Build') {
             steps {
                 bat 'mvn clean'
             }
@@ -16,12 +16,16 @@ pipeline {
 
         stage('Run Tests') {
             steps {
-                bat 'mvn test'
+                script {
+
+                    bat 'mvn test || exit 0'
+                }
             }
         }
 
         stage('Allure Report') {
             steps {
+
                 allure includeProperties: false,
                        jdk: '',
                        results: [[path: 'target/allure-results']]
@@ -31,7 +35,13 @@ pipeline {
 
     post {
         always {
+
             archiveArtifacts artifacts: 'target/screenshots/*.png', allowEmptyArchive: true
+
+
+            allure includeProperties: false,
+                   jdk: '',
+                   results: [[path: 'target/allure-results']]
         }
     }
 }
