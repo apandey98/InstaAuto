@@ -76,7 +76,7 @@ public class loginpage extends basepage {
     public void selectSkill() {
         waitUtil.waitForVisibility(searchOtherJobs).click();
 
-        waitUtil.waitForVisibility(skill).sendKeys("Automation Testing");
+        waitUtil.waitForVisibility(skill).sendKeys("Selenium");
         driver.findElement(skill).sendKeys(Keys.ENTER);
 
     }
