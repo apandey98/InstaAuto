@@ -2,19 +2,13 @@ pipeline {
     agent any
 
     tools {
-        maven 'Maven3'   // ensure Maven configured in Jenkins
-        jdk 'JDK25'      // jo tumne setup kiya hai
+        maven 'Maven3'
+        jdk 'JDK25'
     }
 
     stages {
 
-        stage('Checkout Code') {
-            steps {
-                git branch: 'main', url: 'https://github.com/apandey98/InstaAuto.git'
-            }
-        }
-
-        stage('Clean & Build') {
+                stage('Clean & Build') {
             steps {
                 bat 'mvn clean'
             }
