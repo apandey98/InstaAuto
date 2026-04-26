@@ -19,6 +19,28 @@ try{
     }
 }
 public static String get(String key){
+
     return prop.getProperty(key);
 }
+    public static String getUsername() {
+
+        String user = System.getenv("APP_CREDS_USR");
+
+        if (user == null || user.isEmpty()) {
+            user = get("username");
+        }
+
+        return user;
+    }
+
+    public static String getPassword() {
+
+        String pass = System.getenv("APP_CREDS_PSW");
+
+        if (pass == null || pass.isEmpty()) {
+            pass = get("password");
+        }
+
+        return pass;
+    }
 }

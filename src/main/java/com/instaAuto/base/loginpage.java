@@ -1,5 +1,6 @@
 package com.instaAuto.base;
 
+import com.instaAuto.config.ConfigManager;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -27,7 +28,10 @@ public class loginpage extends basepage {
       public void clickonfirstLogin(){
           click(homeloginButton);
       }
-    public void setLogin(String user, String pass) {
+    public void setLogin() {
+
+        String user = ConfigManager.getUsername();
+        String pass = ConfigManager.getPassword();
 
         WebElement emailField = waitUtil.waitForVisibility(username, 10);
 
@@ -72,7 +76,7 @@ public class loginpage extends basepage {
     public void selectSkill() {
         waitUtil.waitForVisibility(searchOtherJobs).click();
 
-        waitUtil.waitForVisibility(skill).sendKeys("Selenium");
+        waitUtil.waitForVisibility(skill).sendKeys("Quality Assurance");
         driver.findElement(skill).sendKeys(Keys.ENTER);
 
     }

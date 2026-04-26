@@ -1,7 +1,7 @@
 Feature: To Apply jobs online from instahyre
-  Scenario: Login with <username> and <password>
+  Scenario: Login successfully
     Given go to url
-    When user give <username> and <password>
+    When user login
     And user click on login
     Then user select skills
     Then user click on view button

@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    environment {
+            APP_CREDS = credentials('qa-env-login')
+        }
+
     tools {
         maven 'Maven3'
         jdk 'JDK25'
@@ -20,15 +24,6 @@ pipeline {
 
                     bat 'mvn test || exit 0'
                 }
-            }
-        }
-
-        stage('Allure Report') {
-            steps {
-
-                allure includeProperties: false,
-                       jdk: '',
-                       results: [[path: 'target/allure-results']]
             }
         }
     }

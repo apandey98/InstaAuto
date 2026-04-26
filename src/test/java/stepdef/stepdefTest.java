@@ -20,11 +20,9 @@ public class stepdefTest {
         login.clickonfirstLogin();
     }
 
-    @When("user give <username> and <password>")
+    @When("user login")
     public void userGiveUsernameAndPassword() {
-        String username = ConfigManager.get("username");
-        String password = ConfigManager.get("password");
-        login.setLogin(username, password);
+        login.setLogin();
     }
 
     @And("user click on login")
