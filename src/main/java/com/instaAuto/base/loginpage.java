@@ -33,7 +33,6 @@ public class loginpage extends basepage {
 
         WebElement emailField = waitUtil.waitForVisibility(username, 10);
 
-        // Step 1: Try normal input first
         for (int i = 0; i < 3; i++) {
 
             emailField.click();
@@ -41,17 +40,15 @@ public class loginpage extends basepage {
             emailField.sendKeys(Keys.DELETE);
             emailField.sendKeys(user);
 
-            // small wait for JS override
             try { Thread.sleep(500); } catch (Exception e) {}
 
             String value = emailField.getAttribute("value");
 
             if (user.equals(value)) {
-                break; // success
+                break;
             }
         }
 
-        // Step 2: FINAL fallback (JS hard set)
         if (!user.equals(emailField.getAttribute("value"))) {
 
             JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -65,12 +62,10 @@ public class loginpage extends basepage {
             );
         }
 
-        // Step 3: VERIFY AGAIN (CRITICAL)
         if (!user.equals(emailField.getAttribute("value"))) {
             throw new RuntimeException("Username not set properly");
         }
 
-        // password normal
         type(password, pass);
     }
       public void click_login() {
@@ -82,17 +77,7 @@ public class loginpage extends basepage {
         waitUtil.waitForVisibility(skill).sendKeys("Automation Testing");
         driver.findElement(skill).sendKeys(Keys.ENTER);
 
-       //waitUtil.waitForVisibility(skill).sendKeys("Automation testing");
     }
-//      public void clickShowResult() {
-//          driver.findElement(showResult).click();
-//      }
-      public void getTotalJobCount() {
-          driver.findElement(totalJobCount).getText();
-      }
-      public void checkJobAvailability() {
-          driver.findElement(listofJobs).getText();
-      }
       public void clickViewButton(){
           WebDriverWait ws=new WebDriverWait(driver,Duration.ofSeconds(10));
           ws.until(ExpectedConditions.elementToBeClickable(viewButton)).click();

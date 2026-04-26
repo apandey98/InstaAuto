@@ -37,16 +37,6 @@ public class stepdefTest {
         login.selectSkill();
     }
 
-    @Then("take total job counts")
-    public void take_total_job_counts() {
-        login.getTotalJobCount();
-    }
-
-    @And("go to total jobs feed")
-    public void go_to_total_jobs_feed() {
-        login.checkJobAvailability();
-    }
-
     @Then("user click on view button")
     public void user_click_on_view_button() {
         login.clickViewButton();
