@@ -6,4 +6,3 @@ Feature: To Apply jobs online from instahyre
     Then user select skills
     Then user click on view button
     Then click on Apply
-    Then click on apply again
